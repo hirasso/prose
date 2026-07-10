@@ -9,7 +9,6 @@
 A tiny, framework-agnostic formatter for WYSIWYG / rich text content. Pass a
 string, get a string back:
 
-- Autolink raw URLs and email addresses
 - Obfuscate email/phone links against spam bots (via [`hirasso/html-obfuscator`](https://github.com/hirasso/html-obfuscator))
 - Mark external links (`target="_blank"`, custom attributes)
 - Strip tags to an allowlist
@@ -27,7 +26,7 @@ composer require hirasso/prose
 use Hirasso\Prose\Prose;
 use Hirasso\Prose\ProseOptions;
 
-// Minimal: sensible defaults (autolink + obfuscate + prune empty <p>)
+// Minimal: sensible defaults (obfuscate + prune empty <p>)
 echo Prose::format($html);
 
 // Configured
@@ -49,7 +48,6 @@ echo Prose::format($html, new ProseOptions(
 | Option | Default | Purpose |
 |--------|---------|---------|
 | `allowedTags` | `null` | Tags to keep when stripping. `null` = don't strip. |
-| `autolink` | library defaults | `Asika\Autolink\AutolinkOptions` for URL/email linking. |
 | `obfuscate` | `true` | Obfuscate email/phone links. |
 | `removeEmptyElements` | `['p']` | Selectors of whitespace-only elements to prune. |
 | `siteUrl` | `null` | Your site's URL. Required to detect external links. |

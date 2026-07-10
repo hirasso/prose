@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Hirasso\Prose;
 
-use Asika\Autolink\Autolink;
 use Dom\HTMLDocument;
 use InvalidArgumentException;
 
@@ -34,10 +33,6 @@ final class Prose
         if ($options->allowedTags !== null) {
             $html = strip_tags($html, $options->allowedTags);
         }
-
-        $autolink = new Autolink($options->autolinkOptions());
-        $html = $autolink->convert($html);
-        $html = $autolink->convertEmail($html);
 
         $doc = HTMLDocument::createFromString($html, LIBXML_NOERROR);
 
