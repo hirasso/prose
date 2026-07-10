@@ -1,8 +1,8 @@
 # hirasso/prose
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/hirasso/prose.svg)](https://packagist.org/packages/hirasso/prose)
-[![Test Status](https://img.shields.io/github/actions/workflow/status/hirasso/prose/ci.yml?label=tests)](https://github.com/hirasso/prose/actions/workflows/ci.yml)
-[![Code Coverage](https://img.shields.io/codecov/c/github/hirasso/prose?label=coverage%20%28whatever%20that%20entails%29)](https://app.codecov.io/gh/hirasso/prose)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/hirasso/prose?style=flat-square&logo=packagist&logoColor=white)](https://packagist.org/packages/hirasso/prose)
+[![Test Status](https://img.shields.io/github/actions/workflow/status/hirasso/prose/ci.yml?style=flat-square&logo=github&label=tests)](https://github.com/hirasso/prose/actions/workflows/ci.yml)
+[![Code Coverage](https://img.shields.io/codecov/c/github/hirasso/prose?style=flat-square&logo=codecov&logoColor=white&label=coverage%20%28whatever%20that%20entails%29)](https://app.codecov.io/gh/hirasso/prose)
 
 **Format rich text / prose HTML in PHP. Fully HTML5-compatible 🐘**
 
