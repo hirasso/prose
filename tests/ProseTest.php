@@ -68,7 +68,7 @@ it('strips tags to the allowlist', function () {
 it('removes empty paragraphs', function () {
     $result = Prose::format(
         '<p>kept</p><p>&nbsp;</p><p>   </p>',
-        new ProseOptions(obfuscate: false),
+        new ProseOptions(obfuscate: false, removeEmptyElements: ['p']),
     );
 
     expect(substr_count($result, '<p'))->toBe(1);
