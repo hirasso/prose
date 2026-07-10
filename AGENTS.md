@@ -1,6 +1,6 @@
 # Agent skills
 
-This is a framework-agnostic PHP library to format rich text / prose HTML: autolink URLs & emails, obfuscate addresses, mark external links, tidy empty tags.
+This is a framework-agnostic PHP library to format rich text / prose HTML: obfuscate addresses, mark external links, tidy empty tags.
 
 ## Key commands
 

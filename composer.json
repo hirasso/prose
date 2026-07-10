@@ -1,6 +1,6 @@
 {
   "name": "hirasso/prose",
-  "description": "Format rich text / prose HTML: autolink URLs & emails, obfuscate addresses, mark external links, tidy empty tags 🐘",
+  "description": "Format rich text / prose HTML: obfuscate addresses, mark external links, tidy empty tags 🐘",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -11,7 +11,6 @@
   ],
   "require": {
     "php": "^8.4 | ^8.5",
-    "asika/autolink": ">=2.2",
     "hirasso/html-obfuscator": ">=0.6"
   },
   "require-dev": {

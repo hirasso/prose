@@ -10,14 +10,6 @@ it('returns empty input untouched', function () {
     expect(Prose::format('   '))->toBe('   ');
 });
 
-it('autolinks raw urls', function () {
-    $result = Prose::format('<p>Visit https://example.com today</p>', new ProseOptions(
-        obfuscate: false,
-    ));
-
-    expect($result)->toContain('<a')->toContain('href="https://example.com"');
-});
-
 it('marks external links', function () {
     $result = Prose::format(
         '<p><a href="https://external.com">out</a> <a href="/internal">in</a></p>',
