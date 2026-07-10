@@ -21,6 +21,32 @@ it('marks external links', function () {
         ->toContain('target="_blank"');
 });
 
+it('appends classes to external links instead of overwriting them', function () {
+    $result = Prose::format(
+        '<p><a class="btn" href="https://external.com">out</a></p>',
+        new ProseOptions(
+            obfuscate: false,
+            siteUrl: 'https://example.com',
+            externalLinkAttributes: ['class' => 'external'],
+        ),
+    );
+
+    expect($result)->toContain('class="btn external"');
+});
+
+it('sets a class on external links without one', function () {
+    $result = Prose::format(
+        '<p><a href="https://external.com">out</a></p>',
+        new ProseOptions(
+            obfuscate: false,
+            siteUrl: 'https://example.com',
+            externalLinkAttributes: ['class' => 'external'],
+        ),
+    );
+
+    expect($result)->toContain('class="external"');
+});
+
 it('does not mark internal links as external', function () {
     $result = Prose::format(
         '<p><a href="/internal">in</a></p>',

@@ -64,6 +64,9 @@ final class Prose
 
     /**
      * Add the configured attributes to every external link.
+     *
+     * The `class` attribute is appended to any existing classes; all other
+     * attributes overwrite their existing value.
      */
     private static function markExternalLinks(HTMLDocument $doc, ProseOptions $options): void
     {
@@ -74,6 +77,14 @@ final class Prose
                 continue;
             }
             foreach ($options->externalLinkAttributes as $name => $value) {
+                if ($name === 'class') {
+                    $classes = preg_split('/\s+/', trim($value), flags: PREG_SPLIT_NO_EMPTY);
+                    if ($classes !== false && $classes !== []) {
+                        $el->classList->add(...$classes);
+                    }
+
+                    continue;
+                }
                 $el->setAttribute($name, $value);
             }
         }
