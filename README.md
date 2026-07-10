@@ -1,6 +1,6 @@
 # hirasso/prose
 
-**Format rich text / prose HTML in PHP 🐘**
+**Format rich text / prose HTML in PHP. Fully HTML5-compatible 🐘**
 
 A tiny, framework-agnostic formatter for WYSIWYG / rich text content. Pass a
 string, get a string back:
