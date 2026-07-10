@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": ">=8.4",
+    "php": "^8.4 | ^8.5",
     "asika/autolink": ">=2.2",
     "hirasso/html-obfuscator": ">=0.6"
   },
