@@ -48,7 +48,7 @@ final class Prose
 
         self::removeEmptyElements($doc, $options->removeEmptyElements);
 
-        return $doc->saveHtml($doc->body);
+        return $doc->body->innerHTML ?? '';
     }
 
     /**
