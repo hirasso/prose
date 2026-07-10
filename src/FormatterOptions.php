@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Hirasso\ProseFormatter;
+namespace Hirasso\Prose;
 
 use Asika\Autolink\AutolinkOptions;
 
 /**
- * Configuration for {@see ProseFormatter::format()}.
+ * Configuration for {@see Formatter::format()}.
  *
  * All options are optional; the defaults produce sensible output for
  * rich text / prose content.
  */
-final readonly class ProseFormatterOptions
+final readonly class FormatterOptions
 {
     /**
      * @param list<string>|null $allowedTags Tags to keep when stripping (e.g. ['p', 'a', 'strong']). null = don't strip.

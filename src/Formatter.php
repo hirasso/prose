@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Hirasso\ProseFormatter;
+namespace Hirasso\Prose;
 
 use Asika\Autolink\Autolink;
 use Dom\HTMLDocument;
@@ -15,18 +15,18 @@ use function Hirasso\HTMLObfuscator\obfuscate;
  * Framework-agnostic: pass a string, get a string back. Wire it into your
  * CMS / framework yourself (e.g. a WordPress `acf/format_value` filter).
  */
-final class ProseFormatter
+final class Formatter
 {
     /**
      * Format a prose HTML string.
      */
-    public static function format(string $html, ?ProseFormatterOptions $options = null): string
+    public static function format(string $html, ?FormatterOptions $options = null): string
     {
         if (trim($html) === '') {
             return $html;
         }
 
-        $options ??= new ProseFormatterOptions();
+        $options ??= new FormatterOptions();
 
         if ($options->allowedTags !== null) {
             $html = strip_tags($html, $options->allowedTags);
@@ -56,7 +56,7 @@ final class ProseFormatter
     /**
      * Add the configured attributes to every external link.
      */
-    private static function markExternalLinks(HTMLDocument $doc, ProseFormatterOptions $options): void
+    private static function markExternalLinks(HTMLDocument $doc, FormatterOptions $options): void
     {
         $siteUrl = (string) $options->siteUrl;
 

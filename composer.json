@@ -1,5 +1,5 @@
 {
-  "name": "hirasso/prose-formatter",
+  "name": "hirasso/prose",
   "description": "Format rich text / prose HTML: autolink URLs & emails, obfuscate addresses, mark external links, tidy empty tags 🐘",
   "type": "library",
   "license": "MIT",
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Hirasso\\ProseFormatter\\": "src/"
+      "Hirasso\\Prose\\": "src/"
     }
   },
   "autoload-dev": {

@@ -1,4 +1,4 @@
-# hirasso/prose-formatter
+# hirasso/prose
 
 **Format rich text / prose HTML in PHP 🐘**
 
@@ -14,20 +14,20 @@ string, get a string back:
 ## Installation
 
 ```shell
-composer require hirasso/prose-formatter
+composer require hirasso/prose
 ```
 
 ## Usage
 
 ```php
-use Hirasso\ProseFormatter\ProseFormatter;
-use Hirasso\ProseFormatter\ProseFormatterOptions;
+use Hirasso\Prose\Formatter;
+use Hirasso\Prose\FormatterOptions;
 
 // Minimal: sensible defaults (autolink + obfuscate + prune empty <p>)
-echo ProseFormatter::format($html);
+echo Formatter::format($html);
 
 // Configured
-echo ProseFormatter::format($html, new ProseFormatterOptions(
+echo Formatter::format($html, new FormatterOptions(
     allowedTags: ['p', 'a', 'br', 'strong', 'em', 'ul', 'li'],
     siteUrl: 'https://example.com',      // required to detect external links
     removeEmptyElements: ['p'],
@@ -56,7 +56,7 @@ add_filter('acf/format_value/type=wysiwyg', function (mixed $value, $postID, arr
     if (!is_string($value) || $value === '') {
         return $value;
     }
-    return ProseFormatter::format($value, new ProseFormatterOptions(
+    return Formatter::format($value, new FormatterOptions(
         allowedTags: ['p', 'a', 'br', 'blockquote', 'strong', 'b', 'i', 'em', 'ul', 'li', 'sup'],
         siteUrl: home_url(),
     ));
