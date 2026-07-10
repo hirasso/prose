@@ -122,6 +122,10 @@ final class Prose
         $toRemove = [];
         $selectorString = implode(',', $selectors);
 
+        if (trim($selectorString) === '') {
+            return;
+        }
+
         foreach ($doc->querySelectorAll($selectorString) as $node) {
             if (self::isWhitespaceOnly((string) $node->textContent)) {
                 $toRemove[] = $node;

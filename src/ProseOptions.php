@@ -22,7 +22,7 @@ final readonly class ProseOptions
     public function __construct(
         public ?array $allowedTags = null,
         public bool $obfuscate = true,
-        public array $removeEmptyElements = ['p'],
+        public array $removeEmptyElements = [],
         public ?string $siteUrl = null,
         public array $externalLinkAttributes = ['data-external' => '', 'target' => '_blank'],
     ) {
