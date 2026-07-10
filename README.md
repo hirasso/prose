@@ -20,14 +20,14 @@ composer require hirasso/prose
 ## Usage
 
 ```php
-use Hirasso\Prose\Formatter;
-use Hirasso\Prose\FormatterOptions;
+use Hirasso\Prose\Prose;
+use Hirasso\Prose\ProseOptions;
 
 // Minimal: sensible defaults (autolink + obfuscate + prune empty <p>)
-echo Formatter::format($html);
+echo Prose::format($html);
 
 // Configured
-echo Formatter::format($html, new FormatterOptions(
+echo Prose::format($html, new ProseOptions(
     allowedTags: ['p', 'a', 'br', 'strong', 'em', 'ul', 'li'],
     siteUrl: 'https://example.com',      // required to detect external links
     removeEmptyElements: ['p'],
@@ -53,10 +53,10 @@ in your project:
 
 ```php
 add_filter('acf/format_value/type=wysiwyg', function (mixed $value, $postID, array $field): mixed {
-    if (!is_string($value) || $value === '') {
+    if (!is_string($value) || trim($value) === '') {
         return $value;
     }
-    return Formatter::format($value, new FormatterOptions(
+    return Prose::format($value, new ProseOptions(
         allowedTags: ['p', 'a', 'br', 'blockquote', 'strong', 'b', 'i', 'em', 'ul', 'li', 'sup'],
         siteUrl: home_url(),
     ));

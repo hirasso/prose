@@ -15,18 +15,18 @@ use function Hirasso\HTMLObfuscator\obfuscate;
  * Framework-agnostic: pass a string, get a string back. Wire it into your
  * CMS / framework yourself (e.g. a WordPress `acf/format_value` filter).
  */
-final class Formatter
+final class Prose
 {
     /**
      * Format a prose HTML string.
      */
-    public static function format(string $html, ?FormatterOptions $options = null): string
+    public static function format(string $html, ?ProseOptions $options = null): string
     {
         if (trim($html) === '') {
             return $html;
         }
 
-        $options ??= new FormatterOptions();
+        $options ??= new ProseOptions();
 
         if ($options->allowedTags !== null) {
             $html = strip_tags($html, $options->allowedTags);
@@ -46,17 +46,15 @@ final class Formatter
             obfuscate($doc)->saveDocument();
         }
 
-        foreach ($options->removeEmptyElements as $selector) {
-            self::removeEmptyElements($doc, $selector);
-        }
+        self::removeEmptyElements($doc, $options->removeEmptyElements);
 
-        return self::innerHtml($doc);
+        return $doc->saveHtml($doc->body);
     }
 
     /**
      * Add the configured attributes to every external link.
      */
-    private static function markExternalLinks(HTMLDocument $doc, FormatterOptions $options): void
+    private static function markExternalLinks(HTMLDocument $doc, ProseOptions $options): void
     {
         $siteUrl = (string) $options->siteUrl;
 
@@ -95,11 +93,14 @@ final class Formatter
 
     /**
      * Remove whitespace-only elements matching $selector.
+     * @param list<string> $selectors
      */
-    private static function removeEmptyElements(HTMLDocument $doc, string $selector): void
+    private static function removeEmptyElements(HTMLDocument $doc, array $selectors): void
     {
         $toRemove = [];
-        foreach ($doc->querySelectorAll($selector) as $node) {
+        $selectorString = implode(',', $selectors);
+
+        foreach ($doc->querySelectorAll($selectorString) as $node) {
             if (self::isWhitespaceOnly((string) $node->textContent)) {
                 $toRemove[] = $node;
             }
@@ -122,22 +123,5 @@ final class Formatter
         );
 
         return $stripped === '';
-    }
-
-    /**
-     * Serialize the document body's children, without the <body> wrapper.
-     */
-    private static function innerHtml(HTMLDocument $doc): string
-    {
-        if ($doc->body === null) {
-            return '';
-        }
-
-        $html = '';
-        foreach ($doc->body->childNodes as $child) {
-            $html .= $doc->saveHtml($child);
-        }
-
-        return $html;
     }
 }
