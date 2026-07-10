@@ -4,5 +4,5 @@
  * @type {import('lint-staged').Configuration}
  */
 export default {
-  "**/*.php": ["composer analyse", "composer format"],
+  "src/**/*.php": ["composer analyse", "composer format"],
 };

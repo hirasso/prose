@@ -6,6 +6,7 @@ namespace Hirasso\Prose;
 
 use Asika\Autolink\Autolink;
 use Dom\HTMLDocument;
+use InvalidArgumentException;
 
 use function Hirasso\HTMLObfuscator\obfuscate;
 
@@ -25,6 +26,8 @@ final class Prose
         if (trim($html) === '') {
             return $html;
         }
+
+        self::assertIsFragment($html);
 
         $options ??= new ProseOptions();
 
@@ -49,6 +52,19 @@ final class Prose
         self::removeEmptyElements($doc, $options->removeEmptyElements);
 
         return $doc->body->innerHTML ?? '';
+    }
+
+    /**
+     * Guard against full HTML documents: Prose only formats prose fragments.
+     */
+    private static function assertIsFragment(string $html): void
+    {
+        if (preg_match('/<!doctype[\s>]|<(?:html|head|body)[\s>]/i', $html) === 1) {
+            throw new InvalidArgumentException(
+                'Prose::format() expects a prose fragment, not a full HTML document '
+                . '(<!doctype>, <html>, <head> or <body> found).'
+            );
+        }
     }
 
     /**

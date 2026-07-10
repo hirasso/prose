@@ -35,6 +35,11 @@ echo Prose::format($html, new ProseOptions(
 ));
 ```
 
+> [!NOTE]
+> `Prose::format()` expects a **prose fragment**, not a full HTML document. It
+> throws an `InvalidArgumentException` if the input contains `<!doctype>`,
+> `<html>`, `<head>` or `<body>`.
+
 ### Options
 
 | Option | Default | Purpose |

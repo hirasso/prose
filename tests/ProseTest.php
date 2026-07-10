@@ -61,3 +61,25 @@ it('does not wrap output in a body tag', function () {
 
     expect($result)->not->toContain('<body');
 });
+
+it('throws on a full html document', function () {
+    Prose::format('<html><body><p>hi</p></body></html>');
+})->throws(InvalidArgumentException::class);
+
+it('throws on a body wrapper', function () {
+    Prose::format('<body>foo</body>');
+})->throws(InvalidArgumentException::class);
+
+it('throws on a doctype', function () {
+    Prose::format('<!doctype html><p>hi</p>');
+})->throws(InvalidArgumentException::class);
+
+it('throws on a head tag', function () {
+    Prose::format('<head><title>x</title></head><p>hi</p>');
+})->throws(InvalidArgumentException::class);
+
+it('accepts a bare prose fragment', function () {
+    $result = Prose::format('<p>hi</p>', new ProseOptions(obfuscate: false));
+
+    expect($result)->toBe('<p>hi</p>');
+});
