@@ -1,0 +1,46 @@
+{
+  "name": "hirasso/prose-formatter",
+  "description": "Format rich text / prose HTML: autolink URLs & emails, obfuscate addresses, mark external links, tidy empty tags 🐘",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rasso Hilber",
+      "email": "mail@rassohilber.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.4",
+    "asika/autolink": ">=2.2",
+    "hirasso/html-obfuscator": ">=0.6"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.20",
+    "pestphp/pest": "^3.7",
+    "phpstan/phpstan": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hirasso\\ProseFormatter\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "format": "pint",
+    "test": "pest",
+    "analyse": "phpstan analyse --memory-limit=2G"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
