@@ -5,9 +5,13 @@
 vendor
 composer.lock
 
+# node
+node_modules
+
 # tests
 coverage.xml
 tests/reports
+.phpunit.cache
 
 # claude
 .claude

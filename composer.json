@@ -17,6 +17,7 @@
   "require-dev": {
     "laravel/pint": "^1.20",
     "pestphp/pest": "^3.7",
+    "pestphp/pest-plugin-watch": "^3.0",
     "phpstan/phpstan": "^2.1"
   },
   "autoload": {
@@ -32,7 +33,20 @@
   "scripts": {
     "format": "pint",
     "test": "pest",
-    "analyse": "phpstan analyse --memory-limit=2G"
+    "test:watch": [
+      "Composer\\Config::disableProcessTimeout",
+      "pest --watch"
+    ],
+    "test:coverage": "php -d zend_extension=/Applications/Herd.app/Contents/Resources/xdebug/xdebug-84-arm64.so -d xdebug.mode=coverage ./vendor/bin/pest --coverage --coverage-html ./tests/reports",
+    "test:ci": "pest --coverage-clover coverage.xml",
+    "analyse": "phpstan analyse --memory-limit=2G",
+    "post-install-cmd": [
+      "[ -n \"$CI\" ] || pnpm install",
+      "ln -s AGENTS.md CLAUDE.md || exit 0"
+    ],
+    "post-update-cmd": [
+      "[ -n \"$CI\" ] || pnpm install"
+    ]
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
